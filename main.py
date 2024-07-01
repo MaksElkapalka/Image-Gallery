@@ -65,16 +65,16 @@ app.add_middleware(
 )
 
 
-@app.middleware("http")
-async def ban_ips(request: Request, call_next: Callable):
-    ip = request.headers.get("X-Forwarded-For", request.client.host)
-    ip = ip_address(ip)
-    if ip in banned_ips:
-        return JSONResponse(
-            status_code=status.HTTP_403_FORBIDDEN, content={"detail": "You are banned"}
-        )
-    response = await call_next(request)
-    return response
+# @app.middleware("http")
+# async def ban_ips(request: Request, call_next: Callable):
+#     ip = request.headers.get("X-Forwarded-For", request.client.host)
+#     ip = ip_address(ip)
+#     if ip in banned_ips:
+#         return JSONResponse(
+#             status_code=status.HTTP_403_FORBIDDEN, content={"detail": "You are banned"}
+#         )
+#     response = await call_next(request)
+#     return response
 
 
 BASE_DIR = Path(__file__).parent
