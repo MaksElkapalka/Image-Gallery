@@ -52,10 +52,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
-banned_ips = [
-    ip_address("192.168.1.1"),
-    ip_address("192.168.1.2"),
-]
+banned_ips = []
 
 origins = ["*"]
 
